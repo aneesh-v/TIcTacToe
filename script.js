@@ -48,20 +48,16 @@ function handleClick(e) {
 
 	// This will check if a winning match is achieved by any player
 	if (checkWin(currentClass)) {
-		console.log('won');
 		endGame(false);
 	} else if (isDraw()) {
 		endGame(true);
 	} else {
+		// swapTurn swaps the opponent based on circleTurn boolean value
 		swapTurn();
+		// to set hower preview of next oponent use this function after swatTurn
+		// so that this function can decide next opponent based on circleTurn boolean
 		setBoardHoverClass();
 	}
-	// swapTurn swaps the opponent based on circleTurn boolean value
-	// swapTurn();
-
-	// to set hower preview of next oponent use this function after swatTurn
-	// so that this function can decide next opponent based on circleTurn boolean
-	setBoardHoverClass();
 }
 
 function placeMark(cell, currentClass) {
@@ -89,7 +85,7 @@ function checkWin(currentClass) {
 	return WINNING_COMBINATIONS.some((combination) => {
 		// Return true if all of the element in the combination is true
 		// array has access to 'every' method. but in below isDraw() method
-		//it does not have access to array, so we used spread operator
+		//it does not have access to all the methods, so we used spread operator
 		return combination.every((index) => {
 			// Return true if the index element contains 'currentClass'
 			return cellElements[index].classList.contains(currentClass);
